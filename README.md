@@ -1,18 +1,8 @@
 # Move as You Say, Interact as You Can: Language-guided Human Motion Generation with Scene Affordance
 
-<p align="left">
-    <a href='https://arxiv.org/abs/2403.18036' style="text-decoration: none;">
-      <img src='https://img.shields.io/badge/Paper-arXiv-green?style=plastic&logo=arXiv&logoColor=green' alt='Paper arXiv'>
-    </a>
-    &nbsp;
-    <a href='https://afford-motion.github.io/static/pdfs/paper.pdf' style="text-decoration: none;">
-      <img src='https://img.shields.io/badge/Paper-PDF-red?style=plastic&logo=adobeacrobatreader&logoColor=red' alt='Paper PDF'>
-    </a>
-    &nbsp;
-    <a href='https://afford-motion.github.io/' style="text-decoration: none;">
-      <img src='https://img.shields.io/badge/Project-Page-blue?style=plastic&logo=githubpages&logoColor=blue' alt='Project Page'>
-    </a>
-</p>
+[![](https://img.shields.io/badge/Paper-arXiv-green?style=plastic&logo=arXiv&logoColor=green)](https://arxiv.org/abs/2403.18036)
+[![](https://img.shields.io/badge/Paper-PDF-red?style=plastic&logo=adobeacrobatreader&logoColor=red)](https://afford-motion.github.io/static/pdfs/paper.pdf)
+[![](https://img.shields.io/badge/Project-Page-blue?style=plastic&logo=githubpages&logoColor=blue)](https://afford-motion.github.io/)
 
 [Zan Wang](https://silvester.wang),
 [Yixin Chen](https://yixchen.github.io/),
