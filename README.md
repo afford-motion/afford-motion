@@ -1,9 +1,14 @@
 # Move as You Say, Interact as You Can: Language-guided Human Motion Generation with Scene Affordance
 
 <p align="left">
-    <a href=''>
+    <a href='https://arxiv.org/abs/2403.18036'>
       <img src='https://img.shields.io/badge/Paper-arXiv-green?style=plastic&logo=arXiv&logoColor=green' alt='Paper arXiv'>
     </a>
+    &nbsp;
+    <a href='https://afford-motion.github.io/static/pdfs/paper.pdf'>
+      <img src='https://img.shields.io/badge/Paper-PDF-red?style=plastic&logo=adobeacrobatreader&logoColor=red' alt='Paper PDF'>
+    </a>
+    &nbsp;
     <a href='https://afford-motion.github.io/'>
       <img src='https://img.shields.io/badge/Project-Page-blue?style=plastic&logo=githubpages&logoColor=blue' alt='Project Page'>
     </a>
@@ -25,7 +30,8 @@ Language-guided Human Motion Generation with Scene Affordance".
 
 We introduce a novel two-stage framework that employs scene affordance as an intermediate representation, effectively linking 3D scene grounding and conditional motion generation.
 
-[arXiv]() |
+[arXiv](https://arxiv.org/abs/2403.18036) | 
+[Paper](https://afford-motion.github.io/static/pdfs/paper.pdf) | 
 [Project](https://afford-motion.github.io/)
 
 <div align=center>
