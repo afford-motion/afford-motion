@@ -69,7 +69,7 @@ You can directly download our preprocessed data from [OneDrive]() or following [
 
 ## Evaluation on HumanML3D
 
-### Train CDM
+### Train ADM
 
 ```bash
 bash scripts/t2m_contact/train_ddp.sh ${EXP_NAME} ${PORT}
@@ -79,7 +79,7 @@ bash scripts/t2m_contact/train_ddp.sh ${EXP_NAME} ${PORT}
   - `PORT`: the port number for parallel training
   - Our default setting is to train the model with multiple GPUs. You can use `train.py` to train your model with one GPU.
 
-### Train CMDM
+### Train AMDM
 
 ```bash
 bash scripts/t2m_contact_motion/train_ddp.sh ${EXP_NAME} ${PORT}
@@ -87,6 +87,8 @@ bash scripts/t2m_contact_motion/train_ddp.sh ${EXP_NAME} ${PORT}
 ```
   - the arguments are the same as above
   - Note that, please make sure the model can correctly load the pre-generated affordance maps. (You can insert a `print` to check if the code runs into Line 772 in `dataset/humanml3d.py`.)
+
+> Note: We call the model ADM/AMDM as CDM/CMDM in our early implementation, so you may find the model name is CDM/CMDM in the code.
 
 ### Evaluate
 
@@ -127,7 +129,7 @@ python -m eval.eval_h3d_offline --model ./save/cmdm_h3d/model --eval_mode mm_sho
 
 ## Evaluation on HUMANISE
 
-### Train CDM
+### Train ADM
 
 ```bash
 bash scripts/ts2m_contact/train.sh ${EXP_NAME} ${PORT}
@@ -135,7 +137,7 @@ bash scripts/ts2m_contact/train.sh ${EXP_NAME} ${PORT}
 ```
   - the arguments are the same as above
 
-### Train CMDM
+### Train AMDM
 
 ```bash
 bash scripts/ts2m_contact_motion/train.sh ${EXP_NAME} ${PORT}
@@ -164,9 +166,9 @@ bash scripts/ts2m_contact_motion/test.sh ${MODEL_DIR} ${AFFORD_DIR} ${RAND_SEED}
 
 ## Evaluation on Novel Evaluation Set
 
-### Train CDM
+### Train ADM
 
-### Train CMDM
+### Train AMDM
 
 ### Evaluate
 
@@ -182,6 +184,10 @@ If you find our project useful, please consider citing us:
   year={2024}
 }
 ```
+
+### Acknowledgement
+
+Partial code is borrowed from [MDM](https://github.com/GuyTevet/motion-diffusion-model), [HumanML3D](https://github.com/EricGuo5513/text-to-motion) and [HUMANISE](https://github.com/Silverster98/HUMANISE).
 
 ### License
 
