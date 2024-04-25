@@ -1,0 +1,47 @@
+## config/default.yaml
+hydra:
+  run:
+    dir: ${exp_dir}
+  output_subdir: null
+
+defaults:
+  - _self_
+  - task: null
+  - model: null
+
+## general
+project: 'scenediffuser++'
+project_desc: 'scenediffuser plus plus'
+
+## output
+output_dir: 'outputs'
+exp_name: 'default'
+
+exp_dir: ${output_dir}/${now:%Y-%m-%d_%H-%M-%S}_${exp_name}
+log_dir: ${exp_dir}/log
+ckpt_dir: ${exp_dir}/ckpt
+eval_dir: ${exp_dir}/eval
+
+platform: 'TensorBoard' # ['TensorBoard', 'WanDB']
+
+## device
+gpu: 0
+
+## diffusion
+diffusion:
+  predict_xstart: true
+  steps: 1000
+  noise_schedule: 'cosine'
+  timestep_respacing: ''
+  rescale_timesteps: false
+  loss_type: 'MSE'
+
+  learn_sigma: false
+  sigma_small: true
+
+## statistics
+stats:
+  mode: ['word_stats'] # ['word_stats', 'motion_stats']
+
+## random seed
+seed: 2023

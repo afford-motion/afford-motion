@@ -1,0 +1,56 @@
+name: CDM
+
+## contact space
+input_feats: -1
+data_repr: 'contact_cont_joints' # [contact_one_joints, contact_all_joints, contact_cont_joints, contact_pelvis]
+
+## time embedding
+time_emb_dim: 128
+
+## conditions
+## 1. text
+text_model:
+  version: 'ViT-B/32'
+  max_length: 32
+
+## 2. scene
+scene_model:
+  name: 'PointTransformerSeg'
+  use_scene_model: true
+  use_color: ${task.dataset.use_color}
+  use_openscene: ${task.dataset.use_openscene}
+  num_points: ${task.dataset.num_points}
+  point_feat_dim: 32
+  pretrained_weight: './data/POINTTRANS_C_N8192_E300/model.pth'
+  freeze: true
+
+## model architecture
+arch: 'MLP' # ['MLP', 'Perceiver', 'PointTrans']
+arch_mlp:
+  last_dim: 512
+  point_mlp_dims: [512, 512]
+  point_mlp_widening_factor: 1
+  point_mlp_bias: true
+
+arch_perceiver:
+  last_dim: 256
+  point_pos_emb: true
+  encoder_q_input_channels: 512
+  encoder_kv_input_channels: 256
+  encoder_num_heads: 8
+  encoder_widening_factor: 1
+  encoder_dropout: 0.1
+  encoder_residual_dropout: 0.0
+  encoder_self_attn_num_layers: 2
+
+  decoder_q_input_channels: 256
+  decoder_kv_input_channels: 512 # must be equal to encoder_q_input_channels
+  decoder_num_heads: 8
+  decoder_widening_factor: 1
+  decoder_dropout: 0.1
+  decoder_residual_dropout: 0.0
+
+arch_pointtrans:
+  last_dim: 64
+  num_points: ${task.dataset.num_points}
+  blocks: [2, 2, 2, 2]
