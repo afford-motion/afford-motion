@@ -52,7 +52,7 @@ pip install -r requirements.txt
 
 ### Data Preparation
 
-You can directly download our preprocessed data from [OneDrive](https://1drv.ms/f/s!AsbzgpEyucijgQ3VViO74eeCj0aV) or following [data preparation](prepare/README.md) to preprocess the data by yourself. Download the data and put them in the `data/` folder. Oragize the data as follows:
+You can directly download our preprocessed data from [OneDrive](https://1drv.ms/f/s!AsbzgpEyucijgQ3VViO74eeCj0aV) or following [data preparation](prepare/README.md) to preprocess the data by yourself. Download the data and put them in the `data/` folder. Organize the folder as follows:
 
 ```bash
 - afford-motion/
