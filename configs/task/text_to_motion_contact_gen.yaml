@@ -1,0 +1,66 @@
+## task
+name: 'contact map generation conditioned on language description'
+
+## train
+train:
+  lr: 1e-4
+  batch_size: 32
+  num_workers: 4
+  max_steps: 200000 # max steps to train
+  log_every_step: 100 # log every ${log_every_step} steps
+  save_every_step: 20000 # save model every ${save_every_step} steps
+  phase: 'train' # train or all
+  
+  resume_ckpt: '' # resume from checkpoint
+  weight_decay: 0.0
+  lr_anneal_steps: 0
+  schedule_sampler_type: 'uniform'
+
+## test
+test:
+  batch_size: 32
+  num_workers: 0
+
+## sample
+sample:
+  batch_size: 8
+  num_workers: 0
+  dataset_name: 'ContactHumanML3DExampleDataset'
+  data_path: './data/examples/h3d_examples.txt'
+
+## dataset
+dataset:
+  name: 'ContactHumanML3DDataset'
+  data_dir: './data'
+  shuffle_seed: ${seed}
+
+  data_repr: ${model.data_repr}
+  data_repr_joints: [0, 10, 11, 12, 20, 21]
+  use_raw_dist: false
+  sigma: 0.5
+  num_points: 8192
+  min_horizon: 40
+  max_horizon: 196
+  
+  ## transforms
+  train_transforms: ['NumpyToTensor']
+  test_transforms: ['NumpyToTensor']
+  transform_cfg:
+    gravity_dim: 1
+    random_mask_prob: 0.1
+
+## for visualization
+visualizer:
+  name: 'ContactVisualizer'
+  vis_joints: [0, 10, 11, 12, 20, 21]
+
+## for evaluation
+evaluator:
+  name: 'ContactHumanML3DEvaluator'
+
+  k_samples: 0
+  num_k_samples: 128
+  eval_nbatch: 32
+  eval_metrics: []
+  dist_to_target_thresholds: [0.1, 0.3, 0.5]
+  save_results: true

@@ -1,0 +1,88 @@
+## task
+name: 'motion generation conditioned on contact map and language description'
+
+## train
+train:
+  lr: 1e-4
+  batch_size: 32
+  num_workers: 4
+  max_steps: 100000 # max steps to train
+  log_every_step: 100 # log every ${log_every_step} steps
+  save_every_step: 10000 # save model every ${save_every_step} steps
+  phase: 'all' # train or all
+
+  resume_ckpt: '' # resume from checkpoint
+  weight_decay: 0.0
+  lr_anneal_steps: 0
+  schedule_sampler_type: 'uniform'
+
+## test
+test:
+  batch_size: 32
+  num_workers: 0
+  contact_folder: ''
+
+## sample
+sample:
+  batch_size: 8
+  num_workers: 0
+  dataset_name: 'ContactMotionExampleDataset'
+  data_path: './data/examples/contact_motion_examples.txt'
+  contact_folder: ''
+
+## dataset
+dataset:
+  name: 'ContactMotionDataset'
+  data_dir: './data'
+  shuffle_seed: ${seed}
+  sets: ['HumanML3D', 'HUMANISE', 'PROX'] # ['HumanML3D', 'HUMANISE', 'PROX']
+  sets_config:
+    HumanML3D:
+      ratio: 1.0 # the ratio of the dataset to use
+      load_text: true
+      use_mirror: true
+      use_fur: true
+    HUMANISE:
+      ratio: 1.0 # the ratio of the dataset to use
+      load_text: true
+    PROX:
+      ratio: 1.0 # the ratio of the dataset to use
+  
+  data_repr: ${model.data_repr}
+  contact_type: ${model.contact_model.contact_type}
+  contact_joints: ${model.contact_model.contact_joints}
+  use_raw_dist: false
+  sigma: 0.5
+  num_points: 8192
+  min_horizon: 24
+  max_horizon: 196
+  mix_train_ratio: 0.5
+
+  ## transforms
+  train_transforms: ['RandomRotation','ApplyTransformCMDM','NumpyToTensor']
+  test_transforms: ['NumpyToTensor']
+  transform_cfg:
+    gravity_dim: 2
+    random_mask_prob: 0.1
+    random_mask_prob_pc: 0.1
+  
+## for visualization
+visualizer:
+  name: 'ContactMotionVisualizer'
+  njoints: 22
+
+## for evaluation
+evaluator:
+  name: 'Text2MotionInSceneEvaluator'
+  njoints: 22
+
+  k_samples: 1
+  num_k_samples: 10
+  eval_nbatch: 100
+  eval_metrics: ['apd', 'non_collision', 'contact', 'dist']
+  save_results: true
+
+  ## for optimize joints
+  opt_rate: 0.02
+  opt_steps: 200
+  joints_to_smplx_model_weights: './utils/joints_to_smplx/060.pt'
