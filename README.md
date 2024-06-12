@@ -52,7 +52,7 @@ pip install -r requirements.txt
 
 ### Data Preparation
 
-You can directly download our preprocessed data from [OneDrive]() or following [data preparation](prepare/README.md) to preprocess the data by yourself. Oragize the data as follows:
+You can directly download our preprocessed data from [OneDrive](https://1drv.ms/f/s!AsbzgpEyucijgQ3VViO74eeCj0aV) or following [data preparation](prepare/README.md) to preprocess the data by yourself. Download the data and put them in the `data/` folder. Oragize the data as follows:
 
 ```bash
 - afford-motion/
@@ -67,12 +67,17 @@ You can directly download our preprocessed data from [OneDrive]() or following [
   - ...
 ```
 
+We also provide the pre-trained models on [OneDrive](https://1drv.ms/f/s!AsbzgpEyucijgQ3VViO74eeCj0aV). Download the models and put them in the `outputs/` folder.
+
+See more details about the folder structure in [prepare/README.md](prepare/README.md#structure).
+
 ## Evaluation on HumanML3D
 
 ### Train ADM
 
 ```bash
 bash scripts/t2m_contact/train_ddp.sh ${EXP_NAME} ${PORT}
+# or, bash scripts/t2m_contact/train.sh ${EXP_NAME} # for single GPU training
 # e.g., bash scripts/t2m_contact/train_ddp.sh CDM-Perceiver-H3D 29500
 ```
   - `EXP_NAME`: the name of the experiment
@@ -83,6 +88,7 @@ bash scripts/t2m_contact/train_ddp.sh ${EXP_NAME} ${PORT}
 
 ```bash
 bash scripts/t2m_contact_motion/train_ddp.sh ${EXP_NAME} ${PORT}
+# or, bash scripts/t2m_contact_motion/train.sh ${EXP_NAME} # for single GPU training
 # e.g., bash scripts/t2m_contact_motion/train_ddp.sh CMDM-Enc-H3D-mixtrain0.5 29500
 ```
   - the arguments are the same as above
@@ -132,16 +138,18 @@ python -m eval.eval_h3d_offline --model ./save/cmdm_h3d/model --eval_mode mm_sho
 ### Train ADM
 
 ```bash
-bash scripts/ts2m_contact/train.sh ${EXP_NAME} ${PORT}
-# e.g., bash scripts/ts2m_contact/train.sh CDM-Perceiver-HUMANISE-step200k 29500
+bash scripts/ts2m_contact/train_ddp.sh ${EXP_NAME} ${PORT}
+# or, bash scripts/ts2m_contact/train.sh ${EXP_NAME} # for single GPU training
+# e.g., bash scripts/ts2m_contact/train_ddp.sh CDM-Perceiver-HUMANISE-step200k 29500
 ```
   - the arguments are the same as above
 
 ### Train AMDM
 
 ```bash
-bash scripts/ts2m_contact_motion/train.sh ${EXP_NAME} ${PORT}
-# e.g., bash scripts/ts2m_contact_motion/train.sh CMDM-Enc-HUMANISE-step400k 29500
+bash scripts/ts2m_contact_motion/train_ddp.sh ${EXP_NAME} ${PORT}
+# or, bash scripts/ts2m_contact_motion/train.sh ${EXP_NAME} # for single GPU training
+# e.g., bash scripts/ts2m_contact_motion/train_ddp.sh CMDM-Enc-HUMANISE-step400k 29500
 ```
   - the arguments are the same as above
 
@@ -168,9 +176,44 @@ bash scripts/ts2m_contact_motion/test.sh ${MODEL_DIR} ${AFFORD_DIR} ${RAND_SEED}
 
 ### Train ADM
 
+```bash
+bash scripts/novel_contact/train_ddp.sh ${EXP_NAME} ${PORT}
+# or, bash scripts/novel_contact/train.sh ${EXP_NAME} # for single GPU training
+# e.g., bash scripts/novel_contact/train_ddp.sh CDM-Perceiver-ALL 29500
+```
+  - the arguments are the same as above
+
 ### Train AMDM
 
+```bash
+bash scripts/novel_contact_motion/train_ddp.sh ${EXP_NAME} ${PORT}
+# or, bash scripts/novel_contact_motion/train.sh ${EXP_NAME} # for single GPU training
+# e.g., bash scripts/novel_contact_motion/train_ddp.sh CMDM-Enc-ALL 29500
+```
+  - the arguments are the same as above
+
 ### Evaluate
+
+#### 1. Pre-generate affordance maps using the novel evluation set
+
+```bash
+bash scripts/novel_contact/test.sh ${MODEL_DIR} ${RAND_SEED}
+# e.g., bash scripts/novel_contact/test.sh outputs/CDM-Perceiver-ALL/ 2023
+```
+  - the arguments are the same as above
+
+#### 2. Generate motion sequences using the novel evluation set
+  
+```bash
+bash scripts/novel_contact_motion/test.sh ${MODEL_DIR} ${AFFORD_DIR} ${RAND_SEED}
+# e.g., bash scripts/novel_contact_motion/test.sh outputs/CMDM-Enc-ALL/ outputs/CDM-Perceiver-ALL/eval/test-0611-153206/ 2023
+```
+  - the arguments are the same as above
+  - The calculated metrics are stored in `${MODEl_DIR}/eval/${test-MMDD-HHMMSS}/metrics.txt`
+
+## Contact
+
+If you have any questions, please feel free to contact me via email: [zanwang98@gmail.com](mailto:zanwang98@gmail.com).
 
 ## Citation
 
