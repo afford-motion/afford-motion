@@ -52,7 +52,7 @@ pip install -r requirements.txt
 
 ### Data Preparation
 
-You can directly download our preprocessed data from [OneDrive](https://1drv.ms/f/s!AsbzgpEyucijgQ3VViO74eeCj0aV) or following [data preparation](prepare/README.md) to preprocess the data by yourself. Download the data and put them in the `data/` folder. Organize the folder as follows:
+You can directly download our preprocessed data from [OneDrive](https://1drv.ms/f/s!AsbzgpEyucijgQ3VViO74eeCj0aV) / [Baidu Disk](https://pan.baidu.com/s/1K9t_atenvjuntcYTp4a_8A?pwd=ciyy) or following [data preparation](prepare/README.md) to preprocess the data by yourself. Download the data and put them in the `data/` folder. Organize the folder as follows:
 
 ```bash
 - afford-motion/
@@ -67,7 +67,7 @@ You can directly download our preprocessed data from [OneDrive](https://1drv.ms/
   - ...
 ```
 
-We also provide the pre-trained models on [OneDrive](https://1drv.ms/f/s!AsbzgpEyucijgQ3VViO74eeCj0aV). Download the models and put them in the `outputs/` folder.
+We also provide the pre-trained models on [OneDrive](https://1drv.ms/f/s!AsbzgpEyucijgQ3VViO74eeCj0aV) / [Baidu Disk](https://pan.baidu.com/s/1K9t_atenvjuntcYTp4a_8A?pwd=ciyy). Download the models and put them in the `outputs/` folder.
 
 See more details about the folder structure in [prepare/README.md](prepare/README.md#structure).
 
